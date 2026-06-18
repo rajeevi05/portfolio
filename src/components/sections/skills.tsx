@@ -36,9 +36,6 @@ export default function Skills() {
               <span className="font-display text-xl tracking-tight transition-all duration-500 group-hover:translate-x-3 group-hover:text-[color:var(--accent-warm)] sm:text-2xl md:text-3xl">
                 {c.name}
               </span>
-              <span className="shrink-0 pl-3 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                {String(c.items.length).padStart(2, "0")}
-              </span>
             </li>
           ))}
         </ul>

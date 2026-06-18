@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { Github } from "lucide-react";
 
 type Project = {
   name: string;
   url: string;
+  githubUrl: string;
   description: string;
   images?: Array<string>;
   videoSrc?: string;
@@ -12,6 +14,7 @@ const projects: Array<Project> = [
   {
     name: "Sahara",
     url: "https://code-rift-final1.vercel.app/",
+    githubUrl: "https://github.com/rajeevi05/Sahara",
     videoSrc:
       "https://res.cloudinary.com/dyv7kwmeu/video/upload/WhatsApp_Video_2026-06-17_at_11.36.09_PM_icpnfk.mp4",
     description:
@@ -20,24 +23,28 @@ const projects: Array<Project> = [
   {
     name: "Crafter",
     url: "https://crafter-make.vercel.app/",
+    githubUrl: "https://github.com/rajeevi05/crafter",
     description:
       "Crafter is an application that helps new entrepreneurs to market their product. It allows website creation, digital marketing and everything that could help a new business at one place",
   },
   {
     name: "CodeRift",
     url: "https://code-rift-final.vercel.app/",
+    githubUrl: "https://github.com/rajeevi05/code-rift-final",
     description:
       "It is a Stranger Things themed design intensive website I designed to host a college hackathon.",
   },
   {
     name: "Solaris",
     url: "https://solaris-view.vercel.app/",
+    githubUrl: "https://github.com/rajeevi05/solaris",
     description:
       "This is a practice and test website I have created to explore new gen tools and tech innovations",
   },
   {
     name: "Monitored",
     url: "https://monitored-campus.vercel.app/",
+    githubUrl: "https://github.com/rajeevi05/monitored",
     description:
       "Monitored is an anonymous posting site focused on giving a voice to a community of college students to express concerns and injustice. ",
   },
@@ -46,30 +53,57 @@ const projects: Array<Project> = [
 function SaharaPreview({ videoSrc }: { videoSrc: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
+  const playVideo = () => {
     const video = videoRef.current;
     if (!video) return;
 
+    video.muted = true;
+    video.defaultMuted = true;
     video.playbackRate = 2;
+    void video.play();
+  };
+
+  useEffect(() => {
+    playVideo();
   }, []);
 
   return (
-    <figure className="absolute inset-0 grid place-items-center overflow-hidden">
+    <figure className="absolute inset-0 flex items-center justify-center overflow-hidden">
       <video
         ref={videoRef}
         src={videoSrc}
         title="Sahara mobile app demo"
+        preload="auto"
         autoPlay
-        muted
+        muted={true}
         loop
         playsInline
-        controls
+        onCanPlay={playVideo}
         onLoadedMetadata={(event) => {
+          event.currentTarget.muted = true;
+          event.currentTarget.defaultMuted = true;
           event.currentTarget.playbackRate = 2;
+          void event.currentTarget.play();
         }}
-        className="aspect-[9/19.5] h-[min(80dvh,calc(100dvh-4rem))] max-h-full max-w-[min(92vw,24rem)] bg-black object-cover"
+        className="h-full max-h-full w-auto max-w-full bg-black object-contain"
       />
     </figure>
+  );
+}
+
+function GitHubButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Open GitHub repository"
+      className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-white/20 px-4 text-sm font-medium text-white/75 transition-colors hover:border-white hover:bg-white hover:text-black"
+      data-cursor="hover"
+    >
+      <Github className="h-4 w-4" />
+      <span>GitHub</span>
+    </a>
   );
 }
 
@@ -187,8 +221,8 @@ export default function Projects() {
           <div
             className={`relative w-full min-h-0 overflow-hidden ${
               activeProject.videoSrc
-                ? "h-[calc(100dvh-2rem)] max-h-[calc(100dvh-2rem)] bg-transparent"
-                : "aspect-video max-w-[42rem] rounded-lg border border-white/15 bg-white shadow-[0_40px_120px_-50px_rgba(255,255,255,0.35)] lg:aspect-auto lg:h-[min(70dvh,720px)] lg:w-[min(74vw,calc(100vw-clamp(12rem,18vw,16rem)-5rem))] lg:max-w-none"
+                ? "aspect-[9/19.5] h-[min(46dvh,28rem)] max-h-[46dvh] max-w-[min(78vw,14rem)] bg-transparent sm:h-[min(56dvh,34rem)] sm:max-h-[56dvh] sm:max-w-[min(54vw,18rem)] lg:h-[min(78dvh,calc(100dvh-7rem))] lg:max-h-[min(78dvh,calc(100dvh-7rem))] lg:max-w-[min(30vw,23rem)]"
+                : "aspect-[9/19.5] h-[min(54dvh,31rem)] max-h-[54dvh] max-w-[min(82vw,17rem)] rounded-lg border border-white/15 bg-white shadow-[0_40px_120px_-50px_rgba(255,255,255,0.35)] sm:h-[min(60dvh,38rem)] sm:max-h-[60dvh] sm:max-w-[min(62vw,20rem)] lg:aspect-auto lg:h-[85dvh] lg:max-h-[85dvh] lg:w-[min(74vw,calc(100vw-clamp(12rem,18vw,16rem)-5rem))] lg:max-w-none"
             }`}
           >
             {projects.map((project, index) => {
@@ -252,12 +286,18 @@ export default function Projects() {
             <p className="mt-5 max-w-[15rem] text-sm leading-relaxed text-white/68">
               {projects[activeIndex].description}
             </p>
+            <div className="mt-5">
+              <GitHubButton href={projects[activeIndex].githubUrl} />
+            </div>
           </div>
         </aside>
 
-        <p className="pt-4 text-sm leading-relaxed text-white/68 sm:text-base lg:hidden">
-          {projects[activeIndex].description}
-        </p>
+        <div className="flex items-start justify-between gap-4 pt-4 lg:hidden">
+          <p className="min-w-0 text-sm leading-relaxed text-white/68 sm:text-base">
+            {projects[activeIndex].description}
+          </p>
+          <GitHubButton href={projects[activeIndex].githubUrl} />
+        </div>
       </div>
     </section>
   );

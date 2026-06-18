@@ -34,7 +34,7 @@ export default function Hero() {
       </div>
 
       {/* Massive name */}
-      <div className="absolute inset-x-0 bottom-[11vh] z-10 w-full px-4 text-center sm:bottom-[8vh] sm:px-8 md:bottom-0 md:left-0 md:px-14 md:pb-6 md:text-left lg:pb-4">
+      <div className="absolute left-1/2 top-1/2 z-10 w-full -translate-x-1/2 -translate-y-1/2 px-4 text-center sm:px-8 md:bottom-0 md:left-0 md:top-auto md:translate-x-0 md:translate-y-0 md:px-14 md:pb-6 md:text-left lg:pb-4">
         <h1 className="mx-auto max-w-full translate-y-2 select-none font-display font-semibold tracking-normal text-white drop-shadow-[0_18px_28px_rgba(0,0,0,0.52)] md:mx-0 md:translate-y-1">
           <span className="block overflow-hidden">
             <span className="block text-[13vw] leading-[0.9] sm:text-[11.5vw] md:text-[10.8vw]">

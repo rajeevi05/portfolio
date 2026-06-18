@@ -51,7 +51,7 @@ function Index() {
       {/* Reveal overlay */}
       {phase !== "done" && (
         <div
-          className={`fixed inset-0 z-[90] transition-opacity duration-300 ${
+          className={`fixed inset-0 z-[90] transition-opacity duration-30 ${
             phase === "dissolve" ? "opacity-0" : "opacity-100"
           }`}
           onTransitionEnd={() => phase === "dissolve" && setPhase("done")}
@@ -62,7 +62,7 @@ function Index() {
               <div className="font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
                 Rajeevi Madhireddy
               </div>
-              <div className="display-mega mt-4 text-[15vw] md:text-[9vw] leading-[0.85] text-foreground">
+              <div className="display-mega mt-4 text-[15vw] leading-[0.85] text-foreground md:text-[9vw]">
                 HELLO<span className="text-[color:var(--accent-warm)]">.</span>
               </div>
               {/* <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
@@ -75,12 +75,12 @@ function Index() {
           {/* Ink mask layer on top */}
           <InkReveal
             autoDisperse
-            autoDuration={1300}
+            autoDuration={650}
             onComplete={() => setPhase("dissolve")}
-            brushSize={240}
-            stampStep={22}
-            maxStamps={420}
-            lifetime={650}
+            brushSize={280}
+            stampStep={30}
+            maxStamps={240}
+            lifetime={360}
           />
         </div>
       )}
