@@ -6,7 +6,6 @@ import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
 import Cursor from "@/components/cursor";
 import LenisProvider from "@/components/lenis-provider";
-import Experience from "@/components/sections/experience";
 import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
 import Achievements from "@/components/sections/achievements";
@@ -105,19 +104,15 @@ function Index() {
           <Projects />
         </FlowSection>
 
-        <FlowSection id="skills" aria-label="Skills">
-          <Skills />
-        </FlowSection>
-
         <FlowSection
-          id="experience"
-          aria-label="Experience"
-          className="bg-[#daecea]"
-          containerClassName="bg-[#daecea]"
+          id="skills"
+          aria-label="Skills"
+          className="overflow-visible bg-[#daecea]"
+          containerClassName="overflow-visible bg-[#daecea]"
           style={{ backgroundColor: "#daecea" }}
           containerStyle={{ backgroundColor: "#daecea" }}
         >
-          <Experience />
+          <Skills />
         </FlowSection>
 
         <FlowSection id="contact" aria-label="Contact">

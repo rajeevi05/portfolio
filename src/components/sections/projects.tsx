@@ -5,69 +5,71 @@ type Project = {
   url: string;
   description: string;
   images?: Array<string>;
+  videoSrc?: string;
 };
 
 const projects: Array<Project> = [
   {
     name: "Sahara",
     url: "https://code-rift-final1.vercel.app/",
-    images: [
-      "/sahara-images/1.png",
-      "/sahara-images/2.png",
-      "/sahara-images/3.png",
-      "/sahara-images/4.png",
-    ],
+    videoSrc:
+      "https://res.cloudinary.com/dyv7kwmeu/video/upload/WhatsApp_Video_2026-06-17_at_11.36.09_PM_icpnfk.mp4",
     description:
-      "A safety-focused product experience for emergency response, designed around quick decisions and calm clarity.",
+      "Sahara is a mobile application that focuses on solving safety concerns. It uses an ESP32 mesh network to connect to no network areas and has an automated sos call for contacts and other app users nearby.",
   },
   {
     name: "Crafter",
     url: "https://crafter-make.vercel.app/",
     description:
-      "A polished builder experience that turns product intent into a crisp, reviewable web presence.",
+      "Crafter is an application that helps new entrepreneurs to market their product. It allows website creation, digital marketing and everything that could help a new business at one place",
   },
   {
     name: "CodeRift",
     url: "https://code-rift-final.vercel.app/",
     description:
-      "A focused web experience with a clean interaction flow and a strong product-first presentation.",
+      "It is a Stranger Things themed design intensive website I designed to host a college hackathon.",
   },
   {
     name: "Solaris",
     url: "https://solaris-view.vercel.app/",
     description:
-      "A modern interface concept shaped around clarity, visual rhythm, and easy scanning.",
+      "This is a practice and test website I have created to explore new gen tools and tech innovations",
   },
   {
     name: "Monitored",
     url: "https://monitored-campus.vercel.app/",
     description:
-      "A campus monitoring project presented as a live web preview inside the portfolio story.",
+      "Monitored is an anonymous posting site focused on giving a voice to a community of college students to express concerns and injustice. ",
   },
 ];
 
-function SaharaPreview({ images }: { images: Array<string> }) {
+function SaharaPreview({ videoSrc }: { videoSrc: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.playbackRate = 2;
+  }, []);
+
   return (
-    <div className="absolute inset-0 flex min-h-0 items-center overflow-hidden bg-[radial-gradient(circle_at_top_left,rgba(161,197,193,0.22),transparent_32%),linear-gradient(135deg,#070707,#171717_48%,#050505)] px-3 py-4 sm:px-5 lg:px-8">
-      <div className="no-scrollbar flex w-full snap-x gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible sm:pb-0 lg:gap-5">
-        {images.map((image, index) => (
-          <figure
-            key={image}
-            className={`relative aspect-[9/19.5] w-[min(48vw,11rem)] shrink-0 snap-center overflow-hidden rounded-[1.65rem] border border-white/18 bg-black p-1.5 shadow-[0_24px_70px_-38px_rgba(255,255,255,0.7)] sm:w-auto ${
-              index % 2 === 0 ? "sm:translate-y-5" : "sm:-translate-y-5"
-            }`}
-          >
-            <div className="absolute left-1/2 top-2 z-10 h-1.5 w-10 -translate-x-1/2 rounded-full bg-black/70" />
-            <img
-              src={image}
-              alt={`Sahara mobile screen ${index + 1}`}
-              loading="lazy"
-              className="h-full w-full rounded-[1.25rem] object-cover"
-            />
-          </figure>
-        ))}
-      </div>
-    </div>
+    <figure className="absolute inset-0 grid place-items-center overflow-hidden">
+      <video
+        ref={videoRef}
+        src={videoSrc}
+        title="Sahara mobile app demo"
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls
+        onLoadedMetadata={(event) => {
+          event.currentTarget.playbackRate = 2;
+        }}
+        className="aspect-[9/19.5] h-[min(80dvh,calc(100dvh-4rem))] max-h-full max-w-[min(92vw,24rem)] bg-black object-cover"
+      />
+    </figure>
   );
 }
 
@@ -77,6 +79,7 @@ export default function Projects() {
   const activeIndexRef = useRef(0);
   const wheelLockRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeProject = projects[activeIndex];
 
   const scrollToProject = (index: number) => {
     const section = sectionRef.current;
@@ -181,7 +184,13 @@ export default function Projects() {
         </div>
 
         <div className="flex min-h-0 min-w-0 items-center justify-center lg:pr-8">
-          <div className="relative aspect-video w-full max-w-[42rem] min-h-0 overflow-hidden rounded-lg border border-white/15 bg-white shadow-[0_40px_120px_-50px_rgba(255,255,255,0.35)] lg:aspect-auto lg:h-[min(70dvh,720px)] lg:w-[min(74vw,calc(100vw-clamp(12rem,18vw,16rem)-5rem))] lg:max-w-none">
+          <div
+            className={`relative w-full min-h-0 overflow-hidden ${
+              activeProject.videoSrc
+                ? "h-[calc(100dvh-2rem)] max-h-[calc(100dvh-2rem)] bg-transparent"
+                : "aspect-video max-w-[42rem] rounded-lg border border-white/15 bg-white shadow-[0_40px_120px_-50px_rgba(255,255,255,0.35)] lg:aspect-auto lg:h-[min(70dvh,720px)] lg:w-[min(74vw,calc(100vw-clamp(12rem,18vw,16rem)-5rem))] lg:max-w-none"
+            }`}
+          >
             {projects.map((project, index) => {
               const isActive = index === activeIndex;
 
@@ -193,8 +202,8 @@ export default function Projects() {
                   }`}
                   aria-hidden={!isActive}
                 >
-                  {project.images ? (
-                    <SaharaPreview images={project.images} />
+                  {project.videoSrc ? (
+                    <SaharaPreview videoSrc={project.videoSrc} />
                   ) : (
                     <iframe
                       src={project.url}

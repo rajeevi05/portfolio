@@ -28,16 +28,8 @@ const linkedCerts = [
     href: "https://drive.google.com/file/d/13Qfmdct2brovFvNhC0fAuQtZvZFYadxt/view",
   },
   {
-    label: "HackerRank - Java Basic",
+    label: "HackerRank - Java, Python, Problem Solving",
     href: "https://www.hackerrank.com/certificates/fb09938b0b42",
-  },
-  {
-    label: "HackerRank - Python Basic",
-    href: "https://www.hackerrank.com/certificates/609c9582971a",
-  },
-  {
-    label: "HackerRank - Problem Solving",
-    href: "https://www.hackerrank.com/certificates/c6c1764eb9c1",
   },
 ];
 

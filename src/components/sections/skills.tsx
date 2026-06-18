@@ -16,36 +16,35 @@ const categories = [
 
 export default function Skills() {
   const [hovered, setHovered] = useState<string | null>(null);
-  return (
-    <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center px-6 py-28 sm:px-10 md:px-14">
-   
 
-      <h2 className="display-mega text-[8vw] md:text-[4.6vw] leading-[0.9] max-w-5xl">
-        The tools <br /> I reach for.
+  return (
+    <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col justify-center px-6 py-16 sm:px-10 md:px-14">
+      <h2 className="display-mega max-w-5xl text-[7vw] leading-[0.9] md:text-[3.8vw]">
+        The tools <br></br>I worked with.
       </h2>
 
-      <div className="mt-16 grid grid-cols-1 gap-x-8 md:grid-cols-12">
-        <ul className="md:col-span-7 divide-y divide-foreground/10 border-y border-foreground/10">
+      <div className="mt-10 grid grid-cols-1 gap-x-8 md:grid-cols-12">
+        <ul className="divide-y divide-foreground/10 border-y border-foreground/10 md:col-span-7">
           {categories.map((c) => (
             <li
               key={c.name}
               onMouseEnter={() => setHovered(c.name)}
               onMouseLeave={() => setHovered(null)}
-              className="group flex items-center justify-between py-5 md:py-7 cursor-default"
+              className="group flex cursor-default items-center justify-between py-3.5 md:py-4"
               data-cursor="hover"
             >
-              <span className="font-display text-xl tracking-tight sm:text-2xl md:text-4xl transition-all duration-500 group-hover:translate-x-3 group-hover:text-[color:var(--accent-warm)]">
+              <span className="font-display text-xl tracking-tight transition-all duration-500 group-hover:translate-x-3 group-hover:text-[color:var(--accent-warm)] sm:text-2xl md:text-3xl">
                 {c.name}
               </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground shrink-0 pl-3">
+              <span className="shrink-0 pl-3 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
                 {String(c.items.length).padStart(2, "0")}
               </span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-10 md:col-span-5 md:mt-0 md:pl-10">
-          <div className="md:sticky md:top-32 rounded-2xl border border-foreground/10 bg-[oklch(0.97_0.005_90)] p-6 sm:p-8 min-h-[220px] sm:min-h-[280px]">
+        <div className="mt-8 md:col-span-5 md:mt-0 md:pl-10">
+          <div className="min-h-[200px] rounded-2xl border border-foreground/10 bg-[oklch(0.97_0.005_90)] p-6 sm:min-h-[240px] md:sticky md:top-24">
             <div className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
               {hovered ? "Stack" : "Hover a discipline"}
             </div>

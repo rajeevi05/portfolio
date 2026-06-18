@@ -6,7 +6,6 @@ const items: Array<{ id?: string; label: string; href?: string }> = [
   { id: "achievements", label: "Achievements" },
   { id: "projects", label: "Projects" },
   { id: "skills", label: "Skills" },
-  { id: "experience", label: "Volunteering" },
   { id: "contact", label: "Contact" },
 ];
 const resumeHref = "/Rajeevi-Madhireddy-Resume.pdf";

@@ -85,12 +85,14 @@ export default function ResumeContact() {
 }
 
 export function Contact() {
+  const email = "rajeevimadhireddy@gmail.com";
+  const gmailComposeHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
   const links = [
     {
       icon: Mail,
       label: "Email",
-      value: "rajeevimadhireddy@gmail.com",
-      href: "mailto:rajeevimadhireddy@gmail.com",
+      value: email,
+      href: `mailto:${email}`,
     },
     {
       icon: Linkedin,
@@ -134,7 +136,9 @@ export function Contact() {
               you're trying to solve. The fastest way to reach me is email.
             </p>
             <a
-              href="mailto:rajeevimadhireddy@gmail.com"
+              href={gmailComposeHref}
+              target="_blank"
+              rel="noreferrer"
               data-cursor="hover"
               className="group mt-8 inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform duration-300 hover:-translate-y-0.5"
             >
