@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Analytics } from "@vercel/analytics/react";
+import { inject, pageview } from "@vercel/analytics";
 import {
   Outlet,
   Link,
@@ -129,11 +129,18 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
 
+  useEffect(() => {
+    inject({ mode: "production" });
+  }, []);
+
+  useEffect(() => {
+    pageview({ path: location.pathname, route: location.pathname });
+  }, [location.pathname]);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
-      <Analytics path={location.pathname} route={location.pathname} />
     </QueryClientProvider>
   );
 }
