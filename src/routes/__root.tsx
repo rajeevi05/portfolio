@@ -79,14 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Rajeevi Madhireddy — Software Engineer & Frontend Specialist" },
+      { title: "Rajeevi Madhireddy" },
       {
         name: "description",
         content:
-          "Portfolio of Rajeevi Madhireddy — software engineer, frontend specialist, and hackathon winner building AI-powered products with care for craft.",
+          "Portfolio of Rajeevi Madhireddy — frontend specialist and hackathon winner building AI-powered products with care for craft.",
       },
       { name: "author", content: "Rajeevi Madhireddy" },
-      { property: "og:title", content: "Rajeevi Madhireddy — Software Engineer" },
+      { property: "og:title", content: "Rajeevi Madhireddy" },
       {
         property: "og:description",
         content:
@@ -144,3 +144,4 @@ function RootComponent() {
     </QueryClientProvider>
   );
 }
+
