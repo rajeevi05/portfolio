@@ -46,7 +46,7 @@ const projects: Array<Project> = [
     url: "https://monitored-campus.vercel.app/",
     githubUrl: "https://github.com/rajeevi05/monitored",
     description:
-      "Monitored is an anonymous posting site focused on giving a voice to a community of college students to express concerns and injustice. ",
+      "Monitored is an anonymous posting site focused on giving a voice to a community of college students to express concerns and injustice.",
   },
 ];
 
