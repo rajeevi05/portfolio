@@ -25,7 +25,7 @@ const projects: Array<Project> = [
     url: "https://crafter-make.vercel.app/",
     githubUrl: "https://github.com/rajeevi05/crafter",
     description:
-      "Crafter is an application that helps new entrepreneurs to market their product. It allows website creation, digital marketing and everything that could help a new business at one place",
+      "Crafter is an application that helps new entrepreneurs to market their product. It allows website creation, digital marketing and everything that could help a new business at one place.",
   },
   {
     name: "CodeRift",
@@ -39,7 +39,7 @@ const projects: Array<Project> = [
     url: "https://solaris-view.vercel.app/",
     githubUrl: "https://github.com/rajeevi05/solaris",
     description:
-      "This is a practice and test website I have created to explore new gen tools and tech innovations",
+      "This is a practice and test website I have created to explore new gen tools and tech innovations.",
   },
   {
     name: "Monitored",
