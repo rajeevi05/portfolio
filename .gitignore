@@ -30,3 +30,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.vercel/
+bun.lock
+.prettierrc
+.prettierignore
+bunfig.toml
+vercel.json
+vite-dev.err.log
+vite-dev.out.log
