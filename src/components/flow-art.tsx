@@ -105,8 +105,6 @@ const FlowArt: React.FC<FlowArtProps> = ({
         }
       });
 
-      ScrollTrigger.refresh();
-
       return () => {
         triggers.forEach((t) => t.kill());
       };

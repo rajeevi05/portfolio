@@ -14,6 +14,12 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const siteUrl = "https://rajeevi.vercel.app";
+const siteTitle = "Rajeevi Madhireddy | Frontend Developer Portfolio";
+const siteDescription =
+  "Explore Rajeevi Madhireddy's frontend developer portfolio, featuring AI-powered products, hackathon projects, interactive web experiences, skills, achievements, and resume.";
+const socialImage = `${siteUrl}/hero-bg.png`;
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -79,30 +85,65 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Rajeevi Madhireddy" },
+      { title: siteTitle },
       {
         name: "description",
+        content: siteDescription,
+      },
+      {
+        name: "keywords",
         content:
-          "Portfolio of Rajeevi Madhireddy — frontend specialist and hackathon winner building AI-powered products with care for craft.",
+          "Rajeevi Madhireddy, frontend developer, React developer, AI products, hackathon winner, web developer portfolio, CVR College of Engineering",
       },
       { name: "author", content: "Rajeevi Madhireddy" },
-      { property: "og:title", content: "Rajeevi Madhireddy" },
+      { name: "creator", content: "Rajeevi Madhireddy" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: siteTitle },
       {
         property: "og:description",
-        content:
-          "An engineer's interactive digital story. AI products, hackathons, and quietly considered software.",
+        content: siteDescription,
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: siteUrl },
+      { property: "og:site_name", content: "Rajeevi Madhireddy" },
+      { property: "og:image", content: socialImage },
+      { property: "og:image:alt", content: "Rajeevi Madhireddy portfolio hero image" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: siteTitle },
+      { name: "twitter:description", content: siteDescription },
+      { name: "twitter:image", content: socialImage },
     ],
     links: [
+
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg?v=2" },
+      { rel: "canonical", href: siteUrl },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Italiana&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Rajeevi Madhireddy",
+          url: siteUrl,
+          image: socialImage,
+          jobTitle: "Frontend Developer",
+          knowsAbout: [
+            "Frontend development",
+            "React",
+            "AI-powered products",
+            "Hackathon projects",
+            "Interactive web experiences",
+          ],
+          sameAs: ["https://github.com/rajeevi05"],
+        }),
       },
     ],
   }),

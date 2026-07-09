@@ -14,17 +14,17 @@ import { Contact } from "@/components/sections/resume-contact";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rajeevi Madhireddy" },
+      { title: "Rajeevi Madhireddy | Frontend Developer Portfolio" },
       {
         name: "description",
         content:
-          "Portfolio of Rajeevi Madhireddy — frontend specialist, hackathon winner. AI-powered products with care for craft.",
+          "Explore Rajeevi Madhireddy's frontend developer portfolio, featuring AI-powered products, hackathon projects, interactive web experiences, skills, achievements, and resume.",
       },
-      { property: "og:title", content: "Rajeevi Madhireddy" },
+      { property: "og:title", content: "Rajeevi Madhireddy | Frontend Developer Portfolio" },
       {
         property: "og:description",
         content:
-          "An engineer's interactive digital story. AI products, hackathons, and quietly considered software.",
+          "Explore Rajeevi Madhireddy's frontend developer portfolio, featuring AI-powered products, hackathon projects, interactive web experiences, skills, achievements, and resume.",
       },
     ],
   }),
