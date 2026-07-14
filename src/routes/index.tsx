@@ -1,6 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import InkReveal from "@/components/ui/ink-reveal";
 import FlowArt, { FlowSection } from "@/components/flow-art";
 import Hero from "@/components/hero";
 import Navbar from "@/components/navbar";
@@ -10,6 +8,8 @@ import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
 import Achievements from "@/components/sections/achievements";
 import { Contact } from "@/components/sections/resume-contact";
+
+const socialImage = "https://rajeevi.vercel.app/social-preview.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,64 +26,26 @@ export const Route = createFileRoute("/")({
         content:
           "Explore Rajeevi Madhireddy's frontend developer portfolio, featuring AI-powered products, hackathon projects, interactive web experiences, skills, achievements, and resume.",
       },
+      { property: "og:image", content: socialImage },
+      { property: "og:image:secure_url", content: socialImage },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Rajeevi Madhireddy portfolio hero image" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: socialImage },
+      { name: "twitter:image:alt", content: "Rajeevi Madhireddy portfolio hero image" },
     ],
   }),
   component: Index,
 });
 
 function Index() {
-  // Reveal state machine: ink -> dissolve -> done
-  const [phase, setPhase] = useState<"ink" | "dissolve" | "done">("ink");
-  // Lock scroll until reveal finishes
-  useEffect(() => {
-    document.documentElement.style.overflow = phase === "done" ? "" : "hidden";
-    return () => {
-      document.documentElement.style.overflow = "";
-    };
-  }, [phase]);
-
   return (
     <div className="relative min-h-screen bg-background text-foreground grain">
       <Cursor />
-      {phase === "done" && <LenisProvider />}
-      <Navbar visible={phase === "done"} />
-
-      {/* Reveal overlay */}
-      {phase !== "done" && (
-        <div
-          className={`fixed inset-0 z-[90] transition-opacity duration-30 ${
-            phase === "dissolve" ? "opacity-0" : "opacity-100"
-          }`}
-          onTransitionEnd={() => phase === "dissolve" && setPhase("done")}
-        >
-          {/* Beneath the mask: a teaser hero glimpse (the actual hero lives below) */}
-          <div className="absolute inset-0 grid place-items-center bg-background overflow-hidden">
-            <div className="select-none px-6 text-center">
-              <div className="font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
-                Rajeevi Madhireddy
-              </div>
-              <div className="display-mega mt-4 text-[15vw] leading-[0.85] text-foreground md:text-[9vw]">
-                HELLO<span className="text-[color:var(--accent-warm)]">.</span>
-              </div>
-              {/* <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.32em] text-muted-foreground">
-                — Revealing —
-              </div>
-              </div> */}
-            </div>
-          </div>
-
-          {/* Ink mask layer on top */}
-          <InkReveal
-            autoDisperse
-            autoDuration={650}
-            onComplete={() => setPhase("dissolve")}
-            brushSize={280}
-            stampStep={30}
-            maxStamps={240}
-            lifetime={360}
-          />
-        </div>
-      )}
+      <LenisProvider />
+      <Navbar visible />
 
       {/* Main scroll story */}
       <FlowArt aria-label="Rajeevi Madhireddy story">

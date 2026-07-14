@@ -18,7 +18,7 @@ const siteUrl = "https://rajeevi.vercel.app";
 const siteTitle = "Rajeevi Madhireddy | Frontend Developer Portfolio";
 const siteDescription =
   "Explore Rajeevi Madhireddy's frontend developer portfolio, featuring AI-powered products, hackathon projects, interactive web experiences, skills, achievements, and resume.";
-const socialImage = `${siteUrl}/hero-bg.png`;
+const socialImage = `${siteUrl}/social-preview.jpg`;
 
 function NotFoundComponent() {
   return (
@@ -107,11 +107,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: siteUrl },
       { property: "og:site_name", content: "Rajeevi Madhireddy" },
       { property: "og:image", content: socialImage },
+      { property: "og:image:secure_url", content: socialImage },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: "Rajeevi Madhireddy portfolio hero image" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: siteTitle },
       { name: "twitter:description", content: siteDescription },
       { name: "twitter:image", content: socialImage },
+      { name: "twitter:image:alt", content: "Rajeevi Madhireddy portfolio hero image" },
     ],
     links: [
 
